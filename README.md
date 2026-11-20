@@ -40,3 +40,10 @@ their data themselves.
 Because intervals are half-open, two intervals that merely touch at a point
 do not intersect.  ``intersect([(1, 2)], [(2, 3)])`` returns ``[]``, not
 ``[(2, 2)]``.  This is intentional and is the most common source of surprise.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
